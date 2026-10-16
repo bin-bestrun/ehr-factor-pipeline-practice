@@ -1,0 +1,67 @@
+[
+  {
+    "factor_id": "EH001",
+    "slug": "prior-utilization-count",
+    "name_en": "Prior Utilization Count",
+    "category_en": "Encounter descriptor",
+    "column": "prior_utilization_count",
+    "formula_en": "number_outpatient + number_emergency + number_inpatient",
+    "rationale_en": "Sum of the three prior-visit count fields supplied in the source dataset.",
+    "unit": "count",
+    "record_level": "encounter",
+    "clinical_use": false,
+    "path": "EH001-prior-utilization-count"
+  },
+  {
+    "factor_id": "EH002",
+    "slug": "lab-procedures-per-hospital-day",
+    "name_en": "Lab Procedures per Hospital Day",
+    "category_en": "Encounter descriptor",
+    "column": "lab_procedures_per_day",
+    "formula_en": "num_lab_procedures / time_in_hospital when time_in_hospital > 0",
+    "rationale_en": "Descriptive rate of recorded lab procedures over the encounter's hospital days.",
+    "unit": "procedures per day",
+    "record_level": "encounter",
+    "clinical_use": false,
+    "path": "EH002-lab-procedures-per-hospital-day"
+  },
+  {
+    "factor_id": "EH003",
+    "slug": "procedures-per-hospital-day",
+    "name_en": "Procedures per Hospital Day",
+    "category_en": "Encounter descriptor",
+    "column": "procedures_per_day",
+    "formula_en": "num_procedures / time_in_hospital when time_in_hospital > 0",
+    "rationale_en": "Descriptive rate of recorded procedures over the encounter's hospital days.",
+    "unit": "procedures per day",
+    "record_level": "encounter",
+    "clinical_use": false,
+    "path": "EH003-procedures-per-hospital-day"
+  },
+  {
+    "factor_id": "EH004",
+    "slug": "recorded-medication-count",
+    "name_en": "Recorded Medication Count",
+    "category_en": "Encounter descriptor",
+    "column": "medication_count",
+    "formula_en": "count medication fields with a recorded status other than No",
+    "rationale_en": "Count derived by the EHR ETL pipeline; missing medication statuses are not counted as No.",
+    "unit": "count",
+    "record_level": "encounter",
+    "clinical_use": false,
+    "path": "EH004-recorded-medication-count"
+  },
+  {
+    "factor_id": "EH005",
+    "slug": "hospital-stay-days",
+    "name_en": "Hospital Stay Days",
+    "category_en": "Encounter descriptor",
+    "column": "time_in_hospital",
+    "formula_en": "time_in_hospital",
+    "rationale_en": "Length of stay in days as provided by the source dataset (not an admission date).",
+    "unit": "days",
+    "record_level": "encounter",
+    "clinical_use": false,
+    "path": "EH005-hospital-stay-days"
+  }
+]

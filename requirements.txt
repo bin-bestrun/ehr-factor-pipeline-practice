@@ -1,0 +1,3 @@
+pandas>=2.2,<4
+pyarrow>=10,<27
+streamlit>=1.57,<2
