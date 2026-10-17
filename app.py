@@ -141,15 +141,21 @@ left, right = st.columns([3, 2])
 with left:
     with st.container(border=True):
         st.subheader("Factor value distribution")
+
         if valid_values.empty:
             st.info("This factor has no usable values to chart.")
         else:
             histogram = make_histogram(valid_values)
+
+            st.caption(
+                f"Aggregate distribution of "
+                f"{selected.get('name_en', column)} across encounters"
+            )
+
             st.bar_chart(
                 histogram,
                 x="Value interval",
                 y="Encounter count",
-                alt=f"Aggregate distribution of {selected.get('name_en', column)} across encounters",
             )
 with right:
     with st.container(border=True):
@@ -171,7 +177,13 @@ with right:
                 }
             )
             stats["Value"] = stats["Value"].map(format_number)
-            st.dataframe(stats, hide_index=True, alt="Summary statistics for the selected factor")
+            st.subheader("Summary statistics")
+st.caption("Summary statistics for the selected factor.")
+
+st.dataframe(
+    stats,
+    hide_index=True
+)
 
 with st.container(border=True):
     st.subheader("Factor definition")
@@ -188,16 +200,18 @@ with st.expander("Compare all factors"):
     if summary.empty:
         st.info("No factor summary is available.")
     else:
+        st.caption(
+            "Aggregate availability and summary statistics for all packaged factors"
+        )
+
         st.dataframe(
             summary,
             hide_index=True,
-            alt="Aggregate availability and summary statistics for all packaged factors",
             column_config={
                 "Mean": st.column_config.NumberColumn(format="%.3f"),
                 "Median": st.column_config.NumberColumn(format="%.3f"),
             },
         )
-
 st.caption(
     "The source dataset has no encounter date field. This dashboard does not create dates "
     "or display patient-level records. Keep this practice dashboard local."
